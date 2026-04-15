@@ -5,7 +5,7 @@
     <text class="text">点击单元格进行手动编辑</text>
   </view>
 
-  <canvas class="hidden-canvas" canvas-id="tempCanvas" style="width:300px;height:300px;"></canvas>
+  <canvas class="hidden-canvas" canvas-id="tempCanvas" style="width:{{canvasWidth}}px;height:{{canvasWidth}}px;"></canvas>
 
   <view class="loading" wx:if="{{ loading }}">
     <text class="loading-icon">⏳</text>
@@ -13,7 +13,7 @@
   </view>
 
   <view wx:else class="edit-area">
-    <canvas class="pixel-canvas" canvas-id="pixelCanvas" bindtap="onCanvasTap" style="width:300px;height:225px;"></canvas>
+    <canvas class="pixel-canvas" canvas-id="pixelCanvas" bindtap="onCanvasTap" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;"></canvas>
   </view>
 
   <view class="color-palette" wx:if="{{ !loading }}">

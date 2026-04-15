@@ -6,7 +6,9 @@ Page({
     selectedColor: '',
     selectedColorKey: '',
     pixelData: null,
-    gridDimensions: null
+    gridDimensions: null,
+    canvasWidth: 300,
+    canvasHeight: 225
   },
 
   imageInfo: null,
@@ -70,6 +72,8 @@ Page({
     const canvasWidth = 300;
     const canvasHeight = Math.round(canvasWidth * aspectRatio);
 
+    console.log('canvas尺寸:', canvasWidth, 'x', canvasHeight);
+
     // 使用旧的 Canvas API 获取 context
     const tempCtx = wx.createCanvasContext('tempCanvas');
     console.log('tempCtx created');
@@ -107,7 +111,9 @@ Page({
                 return { key: color.key, color: color.hex };
               }),
               pixelData: pixelData,
-              gridDimensions: { N, M }
+              gridDimensions: { N, M },
+              canvasWidth: canvasWidth,
+              canvasHeight: canvasHeight
             });
             console.log('更新数据完成');
 
@@ -115,6 +121,8 @@ Page({
             const app = getApp();
             app.globalData.pixelData = pixelData;
             app.globalData.gridDimensions = { N, M };
+            app.globalData.canvasWidth = canvasWidth;
+            app.globalData.canvasHeight = canvasHeight;
             console.log('保存数据到全局完成');
           } catch (err) {
             console.error('处理像素数据失败:', err);
@@ -333,9 +341,8 @@ Page({
       return;
     }
 
-    const canvasWidth = 300;
-    const aspectRatio = this.imageInfo ? this.imageInfo.height / this.imageInfo.width : 0.75;
-    const canvasHeight = Math.round(canvasWidth * aspectRatio);
+    const canvasWidth = this.data.canvasWidth || 300;
+    const canvasHeight = this.data.canvasHeight || 225;
     const { N, M } = this.data.gridDimensions;
     const cellWidth = canvasWidth / N;
     const cellHeight = canvasHeight / M;
