@@ -52,3 +52,7 @@ public/sw.js.map
 public/workbox-*.js.map
 public/worker-*.js.map
 public/fallback-*.js
+test-base64.txt
+test-volc.js
+test-volc.mjs
+test-volc.ts
