@@ -1,5 +1,12 @@
 // 火山引擎即梦 AI 客户端直接调用
 // 用于静态部署场景，直接从浏览器调用火山引擎 API
+
+interface Env {
+  VOLC_ACCESS_KEY_ID: string;
+  VOLC_SECRET_ACCESS_KEY: string;
+}
+
+
 const VOLC_API_HOST = 'visual.volcengineapi.com';
 const VOLC_API_REGION = 'cn-north-1';
 const VOLC_API_SERVICE = 'cv';
